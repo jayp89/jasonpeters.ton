@@ -40,8 +40,8 @@ const Background: React.FC = () => {
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      const particleColor = 'rgba(218, 165, 32, 0.7)';
-      const glowColor = 'rgba(218, 165, 32, 0.5)';
+      const particleColor = 'rgba(0, 152, 234, 0.7)';
+      const glowColor = 'rgba(0, 152, 234, 0.5)';
       
       // Particle drawing with glow
       ctx.fillStyle = particleColor;
@@ -66,8 +66,8 @@ const Background: React.FC = () => {
       
       // Interconnected Network (Nexus) drawing
       const maxDistance = 120;
-      ctx.lineWidth = 0.5;
-      ctx.shadowBlur = 4; // A more subtle glow for lines
+      ctx.lineWidth = 0.8; // Increased line width
+      ctx.shadowBlur = 6; // Enhanced glow for lines
 
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
@@ -78,8 +78,8 @@ const Background: React.FC = () => {
           if (distance < maxDistance) {
             // Lines are more visible when particles are closer
             const opacity = 1 - (distance / maxDistance);
-            ctx.strokeStyle = `rgba(218, 165, 32, ${opacity * 0.5})`; // Max opacity of 0.5
-            ctx.shadowColor = `rgba(218, 165, 32, ${opacity * 0.5})`;
+            ctx.strokeStyle = `rgba(0, 152, 234, ${opacity * 0.9})`; // Increased opacity
+            ctx.shadowColor = `rgba(0, 152, 234, ${opacity * 0.7})`; // Increased glow opacity
 
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);

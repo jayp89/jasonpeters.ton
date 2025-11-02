@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
-import TextWithTonIcon from './TextWithTonIcon';
+import StyledText from './TextWithTonIcon';
 
 interface SplashScreenProps {
     show: boolean;
@@ -75,7 +75,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ show }) => {
                 {renderedLines.map((line, index) => (
                     <p key={index}>
                         <span className="text-green-400 mr-2">{'>'}</span>
-                        <TextWithTonIcon text={line} />
+                        <StyledText text={line} />
                     </p>
                 ))}
                 {show && bootIndex <= BOOT_SEQUENCE_KEYS.length && (

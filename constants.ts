@@ -1,4 +1,3 @@
-
 import { JourneyItem, SocialLink, EcosystemProject } from './types';
 
 export const JOURNEY_DATA: JourneyItem[] = [
@@ -29,11 +28,31 @@ export const ETN_ECOSYSTEM_PROJECTS: EcosystemProject[] = [
     { nameKey: "project_etn_dns_name", descriptionKey: "project_etn_dns_desc" },
     { nameKey: "project_etn_learn_name", descriptionKey: "project_etn_learn_desc" },
     { nameKey: "project_etn_hosting_name", descriptionKey: "project_etn_hosting_desc" },
-    { nameKey: "project_etn_gebeya_name", descriptionKey: "project_etn_gebeya_desc" },
+    { nameKey: "project_etn_pay_name", descriptionKey: "project_etn_pay_desc" },
+    { nameKey: "project_etn_council_name", descriptionKey: "project_etn_council_desc" },
+    { nameKey: "project_etn_ads_name", descriptionKey: "project_etn_ads_desc" },
+    { nameKey: "project_etn_daily_name", descriptionKey: "project_etn_daily_desc" },
+    { nameKey: "project_mesewer_books_name", descriptionKey: "project_mesewer_books_desc" },
+    { nameKey: "project_etn_ex_name", descriptionKey: "project_etn_ex_desc" },
+    { nameKey: "project_etn_staking_name", descriptionKey: "project_etn_staking_desc" },
+    { nameKey: "project_etn_jemaa_name", descriptionKey: "project_etn_jemaa_desc" },
+    { nameKey: "project_etn_netsa_lancer_name", descriptionKey: "project_etn_netsa_lancer_desc" },
+    { nameKey: "project_etn_travel_name", descriptionKey: "project_etn_travel_desc" },
+    { nameKey: "project_etn_cards_name", descriptionKey: "project_etn_cards_desc" },
+    { nameKey: "project_etn_templates_name", descriptionKey: "project_etn_templates_desc" },
+    { nameKey: "project_etn_fm_name", descriptionKey: "project_etn_fm_desc" },
+    { nameKey: "project_etn_numbers_name", descriptionKey: "project_etn_numbers_desc" },
+    { nameKey: "project_guardians_of_ethiopia_name", descriptionKey: "project_guardians_of_ethiopia_desc" },
+    { nameKey: "project_etn_auth_name", descriptionKey: "project_etn_auth_desc" },
+    { nameKey: "project_etn_gulit_name", descriptionKey: "project_etn_gulit_desc" },
     { nameKey: "project_etn_equb_name", descriptionKey: "project_etn_equb_desc" },
+    { nameKey: "project_etn_devs_name", descriptionKey: "project_etn_devs_desc" },
     { nameKey: "project_etn_bio_name", descriptionKey: "project_etn_bio_desc" },
-    { nameKey: "project_etn_ads_name", descriptionKey: "project_etn_ads_desc" }
+    { nameKey: "project_netsaai_name", descriptionKey: "project_netsaai_desc" },
+    { nameKey: "project_etn_authenticator_name", descriptionKey: "project_etn_authenticator_desc" },
+    { nameKey: "project_etn_gebeya_name", descriptionKey: "project_etn_gebeya_desc" }
 ];
+
 
 export const TON_WALLET_ADDRESS = "UQAS0ddQ7MDEs5vrE-V1NsRKP-ZfGMdhMm1cy1u3y6oHxeva";
 export const TON_AMOUNT_NANOTON = "1000000000";

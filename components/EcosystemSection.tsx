@@ -1,9 +1,8 @@
-
 import React from 'react';
 import AnimatedCard from './AnimatedCard';
 import { ETN_ECOSYSTEM_PROJECTS } from '../constants';
 import { useLanguage } from '../contexts/LanguageContext';
-import TextWithTonIcon from './TextWithTonIcon';
+import StyledText from './TextWithTonIcon';
 
 const SectionHeader: React.FC<{ children: React.ReactNode }> = ({ children }) => (
     <h2 className="font-orbitron text-3xl font-bold text-amber-300 mb-6 relative pb-2
@@ -12,45 +11,43 @@ const SectionHeader: React.FC<{ children: React.ReactNode }> = ({ children }) =>
     </h2>
 );
 
+const PillarCard: React.FC<{ title: React.ReactNode; description: string }> = ({ title, description }) => (
+    <div className="bg-white/5 p-4 rounded-lg border border-amber-400/10">
+        <h3 className="font-bold text-amber-300 mb-1">{title}</h3>
+        <p className="text-gray-400 text-sm leading-relaxed">{description}</p>
+    </div>
+);
+
 const EcosystemSection: React.FC = () => {
     const { t } = useLanguage();
     return (
         <AnimatedCard>
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-                <div>
-                    <SectionHeader>{t('ecosystem_title')}</SectionHeader>
-                    <img src="https://etn.ethio-tech.com/beta1/wp-content/uploads/2023/05/memeseason-final-4-e1685408938352-1024x987.png" alt="ETN Ecosystem Logo" className="w-32 h-32 mx-auto md:mx-0 mb-6 filter drop-shadow-[0_0_10px_#daa520]" />
-                    <p className="mb-4 text-gray-300 leading-relaxed text-lg">
-                        <TextWithTonIcon text={t('ecosystem_intro')} />
-                    </p>
-                    <ul className="space-y-4 mb-6">
-                        {ETN_ECOSYSTEM_PROJECTS.map((project) => (
-                            <li key={project.nameKey} className="flex items-start text-gray-200">
-                                <span className="text-amber-400 mr-3 mt-1">✦</span>
-                                <div>
-                                    <h4 className="font-bold text-white">{t(project.nameKey)}</h4>
-                                    <p className="text-gray-400 text-sm">
-                                        <TextWithTonIcon text={t(project.descriptionKey)} />
-                                    </p>
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
-                    <p className="mb-6 text-gray-300 leading-relaxed text-lg">
-                        {t('ecosystem_vision')}
-                    </p>
-                    <a
-                        href="https://etn.ethio-tech.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-block bg-gradient-to-r from-yellow-500 via-amber-500 to-orange-500 text-black font-bold py-3 px-6 rounded-lg transition-transform transform hover:scale-105 shadow-[0_0_20px_#daa520] hover:shadow-[0_0_30px_#daa520]"
-                    >
-                        {t('ecosystem_button')}
-                    </a>
-                </div>
-                <div className="mt-8 md:mt-0">
-                    <img src="https://etneco.ethio-tech.com/logos/2U5A9865.jpg" alt="JayP at an event" className="rounded-lg shadow-2xl shadow-black/50 border-2 border-amber-400/30" />
-                </div>
+            <SectionHeader><StyledText text={t('ecosystem_title')} /></SectionHeader>
+            <div className="flex flex-col md:flex-row items-center gap-8 mb-8">
+                <img src="https://etn.ethio-tech.com/beta1/wp-content/uploads/2023/05/memeseason-final-4-e1685408938352-1024x987.png" alt="ETN Ecosystem Logo" className="w-24 h-24 md:w-32 md:h-32 filter drop-shadow-[0_0_10px_#daa520]" />
+                <p className="text-gray-300 leading-relaxed text-lg flex-1">
+                    <StyledText text={t('ecosystem_intro_main')} />
+                </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-4 mb-10">
+                <PillarCard title={<StyledText text={t('ecosystem_pillar1_title')} />} description={t('ecosystem_pillar1_desc')} />
+                <PillarCard title={t('ecosystem_pillar2_title')} description={t('ecosystem_pillar2_desc')} />
+                <PillarCard title={t('ecosystem_pillar3_title')} description={t('ecosystem_pillar3_desc')} />
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-x-8 gap-y-6">
+                {ETN_ECOSYSTEM_PROJECTS.map((project) => (
+                    <div key={project.nameKey} className="flex items-start text-gray-200">
+                        <span className="text-amber-400 mr-3 mt-1 text-xl">✦</span>
+                        <div>
+                            <h4 className="font-bold text-white text-lg">{t(project.nameKey)}</h4>
+                            <p className="text-gray-400 text-sm">
+                                <StyledText text={t(project.descriptionKey)} />
+                            </p>
+                        </div>
+                    </div>
+                ))}
             </div>
         </AnimatedCard>
     );

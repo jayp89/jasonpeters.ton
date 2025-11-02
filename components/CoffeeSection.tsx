@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import AnimatedCard from './AnimatedCard';
 import { TON_WALLET_ADDRESS, TON_AMOUNT_NANOTON } from '../constants';
 import { useLanguage } from '../contexts/LanguageContext';
-import TextWithTonIcon from './TextWithTonIcon';
+import StyledText from './TextWithTonIcon';
 
 const SectionHeader: React.FC<{ children: React.ReactNode }> = ({ children }) => (
     <h2 className="font-orbitron text-3xl font-bold text-amber-300 mb-6 relative pb-2
@@ -35,7 +35,7 @@ const CoffeeSection: React.FC = () => {
                 <div className="flex-grow w-full">
                     <SectionHeader>{t('coffee_title')}</SectionHeader>
                     <p className="text-lg text-gray-300 mb-4">
-                        <TextWithTonIcon text={t('coffee_p')} />
+                        <StyledText text={t('coffee_p')} />
                     </p>
                     <textarea
                         value={message}
@@ -48,7 +48,7 @@ const CoffeeSection: React.FC = () => {
                         onClick={handleBuyCoffee}
                         className="w-full bg-gradient-to-r from-yellow-500 via-amber-500 to-orange-500 text-black font-bold py-3 px-6 rounded-lg transition-transform transform hover:scale-105 shadow-[0_0_20px_#daa520] hover:shadow-[0_0_30px_#daa520]"
                     >
-                        <TextWithTonIcon text={t('coffee_button')} />
+                        <StyledText text={t('coffee_button')} />
                     </button>
                 </div>
             </div>

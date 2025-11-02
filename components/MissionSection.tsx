@@ -1,7 +1,7 @@
 import React from 'react';
 import AnimatedCard from './AnimatedCard';
 import { useLanguage } from '../contexts/LanguageContext';
-import TextWithTonIcon from './TextWithTonIcon';
+import StyledText from './TextWithTonIcon';
 
 const SectionHeader: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <h2 className="font-orbitron text-3xl font-bold text-amber-300 mb-6 relative pb-2
@@ -16,7 +16,7 @@ const MissionSection: React.FC = () => {
     <AnimatedCard>
       <SectionHeader>{t('mission_title')}</SectionHeader>
       <div className="space-y-4 text-gray-300 leading-relaxed text-lg">
-        <p><TextWithTonIcon text={t('mission_p')} /></p>
+        <p><StyledText text={t('mission_p')} /></p>
       </div>
     </AnimatedCard>
   );
