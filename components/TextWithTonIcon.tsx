@@ -29,7 +29,9 @@ const StyledText: React.FC<StyledTextProps> = ({ text, className }) => {
         if (lowerPart === 'etn ecosystem') {
              return (
                 <span key={index} className="inline-flex items-center align-middle text-etn-gold whitespace-nowrap font-bold">
-                    <img src="https://docs.etnecosystem.org/img/etn-eco.svg" className="w-[1.2em] h-[1.2em] mr-1 inline-block" alt="ETN Ecosystem icon" />
+                    <svg className="w-[1.2em] h-[1.2em] mr-1 inline-block" aria-hidden="true">
+                        <use href="#etn-ecosystem"></use>
+                    </svg>
                     {part}
                 </span>
              )

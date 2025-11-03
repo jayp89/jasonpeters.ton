@@ -1,22 +1,25 @@
+
 import React, { useState, useEffect } from 'react';
-import IntroSection from './components/IntroSection';
-import AboutSection from './components/AboutSection';
-import JourneySection from './components/JourneySection';
-import EcosystemSection from './components/EcosystemSection';
-import ConnectSection from './components/ConnectSection';
-import CoffeeSection from './components/CoffeeSection';
-import Footer from './components/Footer';
 import { LanguageProvider } from './contexts/LanguageContext';
 import LanguageSwitcher from './components/LanguageSwitcher';
 import SplashScreen from './components/SplashScreen';
 import Background from './components/Background';
-import MissionSection from './components/MissionSection';
+import HomePage from './components/pages/HomePage';
+import BiographyPage from './components/pages/BiographyPage';
+
+type Page = 'home' | 'biography';
+
+const getPageFromHash = (): Page => {
+  return window.location.hash === '#biography' ? 'biography' : 'home';
+}
 
 const App: React.FC = () => {
   const [isMounted, setIsMounted] = useState(false);
   const [isAppLoading, setIsAppLoading] = useState(true);
   const [isSplashRendered, setIsSplashRendered] = useState(true);
+  const [currentPage, setCurrentPage] = useState<Page>(getPageFromHash());
 
+  // Effect for initial mount and splash screen timers
   useEffect(() => {
     setIsMounted(true);
     
@@ -34,6 +37,20 @@ const App: React.FC = () => {
     };
   }, []);
 
+  // Effect for handling routing via hash changes
+  useEffect(() => {
+    const handleHashChange = () => {
+      setCurrentPage(getPageFromHash());
+      window.scrollTo(0, 0); // Scroll to top on page change
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, []);
+
+
   if (!isMounted) {
     return null; // Prevent flash of content on initial load
   }
@@ -45,14 +62,7 @@ const App: React.FC = () => {
         <Background />
         <LanguageSwitcher />
         <main className="relative z-10 flex flex-col items-center px-4 py-16 md:py-24 space-y-24 md:space-y-32">
-          <IntroSection />
-          <MissionSection />
-          <AboutSection />
-          <JourneySection />
-          <EcosystemSection />
-          <ConnectSection />
-          <CoffeeSection />
-          <Footer />
+          {currentPage === 'home' ? <HomePage /> : <BiographyPage />}
         </main>
       </div>
     </LanguageProvider>
