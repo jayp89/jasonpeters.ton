@@ -1,12 +1,11 @@
 
-import React, { useState, useEffect, Suspense, lazy } from 'react';
+import React, { useState, useEffect } from 'react';
 import { LanguageProvider } from './contexts/LanguageContext';
 import LanguageSwitcher from './components/LanguageSwitcher';
 import SplashScreen from './components/SplashScreen';
 import Background from './components/Background';
-
-const HomePage = lazy(() => import('./components/pages/HomePage'));
-const BiographyPage = lazy(() => import('./components/pages/BiographyPage'));
+import HomePage from './components/pages/HomePage';
+import BiographyPage from './components/pages/BiographyPage';
 
 type Page = 'home' | 'biography';
 
@@ -63,9 +62,7 @@ const App: React.FC = () => {
         <Background />
         <LanguageSwitcher />
         <main className="relative z-10 flex flex-col items-center px-4 py-16 md:py-24 space-y-24 md:space-y-32">
-          <Suspense fallback={<div>Loading...</div>}>
-            {currentPage === 'home' ? <HomePage /> : <BiographyPage />}
-          </Suspense>
+          {currentPage === 'home' ? <HomePage /> : <BiographyPage />}
         </main>
       </div>
     </LanguageProvider>
