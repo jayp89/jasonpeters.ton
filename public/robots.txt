@@ -1,0 +1,6 @@
+
+User-agent: *
+Allow: /
+
+Sitemap: http://jasonpeters-ton.etnecosystem.org/sitemap.xml
+Allow: /llms.txt

@@ -1,0 +1,48 @@
+
+# Jason Peters - The Digital Alchemist
+
+## Mission
+A digital explorer passionate about the transformative power of technology and its implications for the next generation of Africans, with a current focus on the TON Blockchain and AI in particular their potential to revolutionize the digital future.
+
+## Executive Summary
+Jason Aaron Peters, known widely by his professional persona "JayP," stands as a prominent and multifaceted figure at the intersection of media, technology, and entrepreneurship in Ethiopia. A South African national raised in Addis Ababa, his career is a compelling narrative of adaptation, cultural integration, and innovation. Over nearly two decades, Peters has charted a course from industrial management and broadcasting to the frontiers of artificial intelligence, eSports, and Web3 technology.
+
+He first gained public recognition through his extensive work in radio at 105.3 Afro FM, where he honed his skills as a communicator and media strategist. This foundation paved the way for the creation of a powerful digital media ecosystem, centered around the influential "ETHIO TECH with JayP" brand. This platform, which he has positioned as "Ethiopia's #1 Tech Channel," has established him as a leading voice and educator in the nation's burgeoning tech scene.
+
+As a founder and CEO, Peters has demonstrated a consistent ability to identify and capitalize on emerging technological trends, leveraging a deep, nuanced understanding of the Ethiopian market. His company, Ethio Tech AI, developed Maqdala-AI, a pioneering Large Language Model (LLM) focused on Ethiopian languages. His ventures in eSports (Ge'ez eSport) and blockchain (The ETN Ecosystem) showcase a sophisticated strategy of embedding modern technology within local heritage to foster community and drive adoption.
+
+## Professional Chronology
+- **Apr 2008 - Apr 2013**: Peters Industrial Enterprises PLC - General Manager
+- **Jun 2009 - Oct 2015**: 105.3 Afro FM - Presenter, Producer, Program Manager
+- **Sep 2011 - Jul 2012**: Addis Regency Hotel - Manager
+- **Dec 2013 - Nov 2021**: Bunifu Advertising - General Partner/Marketing Director
+- **Dec 2019 - Present**: Ethio Tech AI - Founder/CEO (Established Ethiopia's first AI organization)
+- **Dec 2019 - Present**: ETHIO TECH with JayP - Founder, Host
+- **Oct 2020 - Present**: Ge'ez eSport - Founding Member & CTO
+- **Sep 2021 - Present**: ETHIO TECH NEWS - Editor In Chief
+- **Present**: The ETN Ecosystem - Founder (Launched on TON Blockchain)
+
+## Early Life and Personal Background
+Jason Aaron Peters was born in 1989 in Durban, South Africa, to Mark Giles Peters and Jill Diane Peters. He has lived in Ethiopia for over 26 years, blending an external viewpoint with a deep understanding of Ethiopian society. He speaks Amharic fluently. His early interest in computers and network infrastructure laid the groundwork for his future tech ecosystem approach.
+
+## Media Ecosystem
+- **ETHIO TECH with JayP (YouTube)**: Ethiopia's #1 Tech Channel. Covers tech reviews, hardware projects, and FinTech/Crypto.
+- **CYBER Ethiopia**: Technology podcast distributed on Apple Podcasts/Spotify and broadcast on 104.7 EBC radio.
+- **ETHIO TECH NEWS**: Formal tech news outlet.
+
+## Ventures
+### Ethio Tech AI & Maqdala-AI
+Founded in 2019. Created "Maqdala-AI", an LLM focused on Ethiopian languages (Amharic, Afan Oromo), named after Emperor Tewodros II's fortress to symbolize reclaiming cultural knowledge.
+
+### The ETN Ecosystem
+A decentralized micro-economy on the TON Blockchain.
+- **$ETN Coin**: The utility token (Max supply: 5M).
+- **Key Apps**: ETN Pay, ETN Learn (Web3 LMS), ETN DNS (Decentralized domains), ETN Ads, and more.
+- **Philosophy**: Rooted in "Netsa" (Freedom). Uses "Cultural Moats" by integrating Ethiopian heritage (e.g., Jebena-themed games) with modern blockchain tech.
+
+## Contact & Socials
+- **YouTube**: ETHIOTECHwithJayP
+- **Telegram**: t.me/ethiojay
+- **Twitter (X)**: @jason_peters1
+- **LinkedIn**: Jason Peters
+- **Website**: http://jasonpeters-ton.etnecosystem.org/

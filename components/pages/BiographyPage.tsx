@@ -15,22 +15,42 @@ import { useLanguage } from '../../contexts/LanguageContext';
 const BiographyPage: React.FC = () => {
   const { t } = useLanguage();
 
-  // SEO: Update Title and Meta Description when component mounts
+  // SEO: Update Title, Meta Description, and Open Graph tags
   useEffect(() => {
     const originalTitle = document.title;
     const originalDesc = document.querySelector('meta[name="description"]')?.getAttribute('content');
 
-    document.title = "Biography | Jason Peters - The Digital Alchemist";
+    const title = "Biography | Jason Peters - The Digital Alchemist";
+    const desc = "Read the comprehensive biography of Jason Peters (JayP). From his early life in Addis Ababa and career at Afro FM to founding Ethio Tech AI and the ETN Ecosystem on TON Blockchain.";
+
+    document.title = title;
     
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-        metaDesc.setAttribute('content', "Read the comprehensive biography of Jason Peters (JayP). From his early life in Addis Ababa and career at Afro FM to founding Ethio Tech AI and the ETN Ecosystem on TON Blockchain.");
+    const updateMeta = (selector: string, content: string) => {
+        let element = document.querySelector(selector);
+        if (element) {
+            element.setAttribute('content', content);
+        }
+    };
+
+    const updateOg = (property: string, content: string) => {
+        let element = document.querySelector(`meta[property="${property}"]`);
+        if (!element) {
+            element = document.createElement('meta');
+            element.setAttribute('property', property);
+            document.head.appendChild(element);
+        }
+        element.setAttribute('content', content);
     }
+
+    updateMeta('meta[name="description"]', desc);
+    updateOg('og:title', title);
+    updateOg('og:description', desc);
+    updateOg('og:url', window.location.href);
 
     return () => {
         document.title = originalTitle;
-        if (metaDesc && originalDesc) {
-            metaDesc.setAttribute('content', originalDesc);
+        if (originalDesc) {
+            updateMeta('meta[name="description"]', originalDesc);
         }
     };
   }, []);
@@ -41,8 +61,8 @@ const BiographyPage: React.FC = () => {
   };
 
   return (
-    <div className="w-full flex flex-col items-center gap-10 md:gap-16 pb-20">
-        <div className="w-full max-w-5xl px-4 md:px-0">
+    <div className="w-full flex flex-col items-center gap-12 md:gap-20 pb-24">
+        <div className="w-full max-w-5xl px-4 md:px-0 pt-4">
             <a 
                 href="#" 
                 onClick={handleBackToHome}
@@ -54,7 +74,7 @@ const BiographyPage: React.FC = () => {
         </div>
         
         {/* Biography Content Cards */}
-        <div className="w-full flex flex-col items-center gap-10 md:gap-16">
+        <div className="w-full flex flex-col items-center gap-12 md:gap-20">
             <ExecutiveSummaryCard />
             <ChronologyCard />
             <EarlyLifeCard />

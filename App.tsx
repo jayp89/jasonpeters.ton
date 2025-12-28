@@ -14,15 +14,29 @@ const getPageFromHash = (): Page => {
   return window.location.hash === '#biography' ? 'biography' : 'home';
 }
 
+// Helper function to detect search engine bots
+const isSearchBot = (): boolean => {
+  if (typeof navigator === 'undefined') return false;
+  const ua = navigator.userAgent.toLowerCase();
+  return /bot|googlebot|crawler|spider|robot|crawling/i.test(ua);
+};
+
 const App: React.FC = () => {
+  // Check if the user is a bot once on initialization
+  const isBot = isSearchBot();
+
   const [isMounted, setIsMounted] = useState(false);
-  const [isAppLoading, setIsAppLoading] = useState(true);
-  const [isSplashRendered, setIsSplashRendered] = useState(true);
+  // Bypass loading state and splash screen immediately if it's a bot
+  const [isAppLoading, setIsAppLoading] = useState(!isBot);
+  const [isSplashRendered, setIsSplashRendered] = useState(!isBot);
   const [currentPage, setCurrentPage] = useState<Page>(getPageFromHash());
 
   useEffect(() => {
     setIsMounted(true);
     
+    // If it is a bot, skip the timers to render content immediately for the crawler
+    if (isBot) return;
+
     const loadingTimer = setTimeout(() => {
       setIsAppLoading(false);
     }, 10000); 
@@ -35,7 +49,7 @@ const App: React.FC = () => {
       clearTimeout(loadingTimer);
       clearTimeout(renderTimer);
     };
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -60,8 +74,8 @@ const App: React.FC = () => {
       <div className={`relative min-h-screen transition-opacity duration-700 ${isAppLoading ? 'opacity-0' : 'opacity-100'}`}>
         <Background />
         
-        {/* Social Header (Desktop) */}
-        <div className="fixed top-4 left-4 z-50 hidden md:flex items-center gap-4 bg-black/30 backdrop-blur-md border border-white/10 rounded-full px-6 py-2 shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:border-amber-500/30 transition-all duration-300">
+        {/* Social Header */}
+        <div className="fixed top-4 left-4 z-50 flex items-center gap-3 bg-black/30 backdrop-blur-md border border-white/10 rounded-full px-4 py-2 shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:border-amber-500/30 transition-all duration-300 scale-[0.8] origin-top-left md:scale-100">
             {SOCIAL_LINKS.map((link) => (
                 <a
                     key={link.key}
