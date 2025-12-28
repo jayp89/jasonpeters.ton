@@ -6,8 +6,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import StyledText from './TextWithTonIcon';
 
 const SectionHeader: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-    <h2 className="font-orbitron text-3xl font-bold text-amber-300 mb-6 relative pb-2
-      after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-16 after:h-0.5 after:bg-amber-300 after:shadow-[0_0_10px_#daa520]">
+    <h2 className="font-orbitron text-3xl font-bold text-amber-300 mb-2">
       {children}
     </h2>
 );
@@ -24,32 +23,42 @@ const CoffeeSection: React.FC = () => {
 
     return (
         <AnimatedCard>
-            <div className="flex flex-col md:flex-row items-center gap-8">
-                <div className="flex-shrink-0">
+            <div className="flex flex-col md:flex-row items-center gap-10">
+                <div className="relative group">
+                    <div className="absolute inset-0 bg-amber-500/20 blur-xl rounded-full group-hover:bg-amber-500/30 transition-all duration-500"></div>
                     <img
                         src="https://etneco.ethio-tech.com/logos/Coffee.webp"
                         alt="Cup of coffee"
-                        className="w-40 h-40 object-contain filter drop-shadow-[0_0_15px_#daa52099]"
+                        className="relative w-48 h-48 object-contain filter drop-shadow-[0_0_15px_rgba(245,158,11,0.3)] transform transition-transform duration-500 group-hover:scale-105 group-hover:rotate-6"
                     />
                 </div>
                 <div className="flex-grow w-full">
                     <SectionHeader>{t('coffee_title')}</SectionHeader>
-                    <p className="text-lg text-gray-300 mb-4">
+                    <div className="h-1 w-20 bg-amber-500 rounded-full mb-6"></div>
+                    
+                    <p className="text-lg text-gray-300 mb-6 font-light">
                         <StyledText text={t('coffee_p')} />
                     </p>
-                    <textarea
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
-                        placeholder={t('coffee_placeholder')}
-                        className="w-full p-3 rounded-lg bg-black/40 border border-amber-400/30 focus:ring-2 focus:ring-amber-400 focus:border-amber-400 outline-none transition-all duration-300 text-white placeholder-gray-500 mb-4"
-                        rows={3}
-                    ></textarea>
-                    <button
-                        onClick={handleBuyCoffee}
-                        className="w-full bg-gradient-to-r from-yellow-500 via-amber-500 to-orange-500 text-black font-bold py-3 px-6 rounded-lg transition-transform transform hover:scale-105 shadow-[0_0_20px_#daa520] hover:shadow-[0_0_30px_#daa520]"
-                    >
-                        <StyledText text={t('coffee_button')} />
-                    </button>
+                    
+                    <div className="space-y-4">
+                        <textarea
+                            value={message}
+                            onChange={(e) => setMessage(e.target.value)}
+                            placeholder={t('coffee_placeholder')}
+                            className="w-full p-4 rounded-xl bg-black/40 border border-white/10 focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500 outline-none transition-all duration-300 text-white placeholder-gray-600 resize-none font-mono text-sm"
+                            rows={3}
+                        ></textarea>
+                        
+                        <button
+                            onClick={handleBuyCoffee}
+                            className="w-full relative overflow-hidden group bg-gradient-to-r from-amber-600 to-yellow-500 p-[1px] rounded-xl"
+                        >
+                            <div className="relative bg-black/80 hover:bg-transparent text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-3 group-hover:text-black">
+                                <span className="font-orbitron tracking-wider text-sm md:text-base"><StyledText text={t('coffee_button')} /></span>
+                                <i className="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+                            </div>
+                        </button>
+                    </div>
                 </div>
             </div>
         </AnimatedCard>

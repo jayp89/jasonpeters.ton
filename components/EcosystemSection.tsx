@@ -1,3 +1,4 @@
+
 import React from 'react';
 import AnimatedCard from './AnimatedCard';
 import { ETN_ECOSYSTEM_PROJECTS } from '../constants';
@@ -5,49 +6,66 @@ import { useLanguage } from '../contexts/LanguageContext';
 import StyledText from './TextWithTonIcon';
 
 const SectionHeader: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-    <h2 className="font-orbitron text-3xl font-bold text-amber-300 mb-6 relative pb-2
-      after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-16 after:h-0.5 after:bg-amber-300 after:shadow-[0_0_10px_#daa520]">
-      {children}
+    <h2 className="font-orbitron text-4xl font-bold text-white mb-10 relative inline-block">
+      <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-300 to-yellow-500">{children}</span>
+      <div className="absolute -bottom-2 left-0 w-1/2 h-1 bg-amber-500 rounded-full shadow-[0_0_10px_#f59e0b]"></div>
     </h2>
 );
 
-const PillarCard: React.FC<{ title: React.ReactNode; description: string }> = ({ title, description }) => (
-    <div className="bg-white/5 p-4 rounded-lg border border-amber-400/10">
-        <h3 className="font-bold text-amber-300 mb-1">{title}</h3>
-        <p className="text-gray-400 text-sm leading-relaxed">{description}</p>
+const PillarCard: React.FC<{ title: React.ReactNode; description: string; index: number }> = ({ title, description, index }) => (
+    <div className="bg-gradient-to-b from-white/10 to-white/5 p-6 rounded-xl border border-white/10 hover:border-amber-500/40 transition-all duration-300 group h-full">
+        <div className="text-4xl text-amber-500/20 font-orbitron font-bold absolute top-2 right-4 group-hover:text-amber-500/40 transition-colors">0{index}</div>
+        <h3 className="font-bold text-xl text-amber-300 mb-3 relative z-10">{title}</h3>
+        <p className="text-gray-400 text-sm leading-relaxed relative z-10">{description}</p>
     </div>
 );
+
+const ProjectCard: React.FC<{ nameKey: string; descriptionKey: string }> = ({ nameKey, descriptionKey }) => {
+    const { t } = useLanguage();
+    return (
+        <div className="p-4 bg-black/20 rounded-lg border border-white/5 hover:bg-white/5 hover:border-amber-500/30 transition-all duration-300 flex flex-col h-full">
+            <div className="flex items-center mb-2">
+                <span className="text-amber-400 mr-2 text-lg">✦</span>
+                <h4 className="font-bold text-white text-md font-orbitron">{t(nameKey)}</h4>
+            </div>
+            <p className="text-gray-400 text-xs leading-relaxed flex-grow">
+                <StyledText text={t(descriptionKey)} />
+            </p>
+        </div>
+    );
+}
 
 const EcosystemSection: React.FC = () => {
     const { t } = useLanguage();
     return (
         <AnimatedCard>
-            <SectionHeader><StyledText text={t('ecosystem_title')} /></SectionHeader>
-            <div className="flex flex-col md:flex-row items-center gap-8 mb-8">
-                <img src="https://etn.ethio-tech.com/beta1/wp-content/uploads/2023/05/memeseason-final-4-e1685408938352-1024x987.png" alt="ETN Ecosystem Logo" className="w-24 h-24 md:w-32 md:h-32 filter drop-shadow-[0_0_10px_#daa520]" />
-                <p className="text-gray-300 leading-relaxed text-lg flex-1">
-                    <StyledText text={t('ecosystem_intro_main')} />
-                </p>
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mb-12">
+                <div>
+                    <SectionHeader><StyledText text={t('ecosystem_title')} /></SectionHeader>
+                    <p className="text-gray-300 leading-relaxed text-lg max-w-2xl mt-4 border-l-4 border-amber-500 pl-4 bg-amber-500/5 py-2 rounded-r-lg">
+                        <StyledText text={t('ecosystem_intro_main')} />
+                    </p>
+                </div>
+                <div className="flex-shrink-0 hidden md:block animate-float">
+                    <img src="https://etn.ethio-tech.com/beta1/wp-content/uploads/2023/05/memeseason-final-4-e1685408938352-1024x987.png" alt="ETN Ecosystem Logo" className="w-32 h-32 md:w-40 md:h-40 filter drop-shadow-[0_0_25px_rgba(245,158,11,0.5)]" />
+                </div>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-4 mb-10">
-                <PillarCard title={<StyledText text={t('ecosystem_pillar1_title')} />} description={t('ecosystem_pillar1_desc')} />
-                <PillarCard title={t('ecosystem_pillar2_title')} description={t('ecosystem_pillar2_desc')} />
-                <PillarCard title={t('ecosystem_pillar3_title')} description={t('ecosystem_pillar3_desc')} />
+            <div className="grid md:grid-cols-3 gap-6 mb-16">
+                <PillarCard index={1} title={<StyledText text={t('ecosystem_pillar1_title')} />} description={t('ecosystem_pillar1_desc')} />
+                <PillarCard index={2} title={t('ecosystem_pillar2_title')} description={t('ecosystem_pillar2_desc')} />
+                <PillarCard index={3} title={t('ecosystem_pillar3_title')} description={t('ecosystem_pillar3_desc')} />
             </div>
 
-            <div className="grid md:grid-cols-2 gap-x-8 gap-y-6">
-                {ETN_ECOSYSTEM_PROJECTS.map((project) => (
-                    <div key={project.nameKey} className="flex items-start text-gray-200">
-                        <span className="text-amber-400 mr-3 mt-1 text-xl">✦</span>
-                        <div>
-                            <h4 className="font-bold text-white text-lg">{t(project.nameKey)}</h4>
-                            <p className="text-gray-400 text-sm">
-                                <StyledText text={t(project.descriptionKey)} />
-                            </p>
-                        </div>
-                    </div>
-                ))}
+            <div className="relative">
+                <div className="absolute -left-10 top-1/2 -translate-y-1/2 -rotate-90 text-xs font-mono text-gray-500 tracking-[0.3em] uppercase hidden xl:block">
+                    Ecosystem Map
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {ETN_ECOSYSTEM_PROJECTS.map((project) => (
+                        <ProjectCard key={project.nameKey} nameKey={project.nameKey} descriptionKey={project.descriptionKey} />
+                    ))}
+                </div>
             </div>
         </AnimatedCard>
     );

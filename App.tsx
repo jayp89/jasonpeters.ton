@@ -6,6 +6,7 @@ import SplashScreen from './components/SplashScreen';
 import Background from './components/Background';
 import HomePage from './components/pages/HomePage';
 import BiographyPage from './components/pages/BiographyPage';
+import { SOCIAL_LINKS } from './constants';
 
 type Page = 'home' | 'biography';
 
@@ -19,17 +20,16 @@ const App: React.FC = () => {
   const [isSplashRendered, setIsSplashRendered] = useState(true);
   const [currentPage, setCurrentPage] = useState<Page>(getPageFromHash());
 
-  // Effect for initial mount and splash screen timers
   useEffect(() => {
     setIsMounted(true);
     
     const loadingTimer = setTimeout(() => {
       setIsAppLoading(false);
-    }, 10000); // Splash screen visible for 10s
+    }, 10000); 
 
     const renderTimer = setTimeout(() => {
       setIsSplashRendered(false);
-    }, 10500); // Remove from DOM after 10.5s (allowing 0.5s for fade-out)
+    }, 10500); 
 
     return () => {
       clearTimeout(loadingTimer);
@@ -37,11 +37,10 @@ const App: React.FC = () => {
     };
   }, []);
 
-  // Effect for handling routing via hash changes
   useEffect(() => {
     const handleHashChange = () => {
       setCurrentPage(getPageFromHash());
-      window.scrollTo(0, 0); // Scroll to top on page change
+      window.scrollTo(0, 0); 
     };
 
     window.addEventListener('hashchange', handleHashChange);
@@ -52,16 +51,33 @@ const App: React.FC = () => {
 
 
   if (!isMounted) {
-    return null; // Prevent flash of content on initial load
+    return null; 
   }
 
   return (
     <LanguageProvider>
       {isSplashRendered && <SplashScreen show={isAppLoading} />}
-      <div className={`relative min-h-screen transition-opacity duration-500 ${isAppLoading ? 'opacity-0' : 'opacity-100'}`}>
+      <div className={`relative min-h-screen transition-opacity duration-700 ${isAppLoading ? 'opacity-0' : 'opacity-100'}`}>
         <Background />
+        
+        {/* Social Header (Desktop) */}
+        <div className="fixed top-4 left-4 z-50 hidden md:flex items-center gap-4 bg-black/30 backdrop-blur-md border border-white/10 rounded-full px-6 py-2 shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:border-amber-500/30 transition-all duration-300">
+            {SOCIAL_LINKS.map((link) => (
+                <a
+                    key={link.key}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`text-gray-400 transition-all duration-300 transform hover:scale-125 ${link.color}`}
+                    title={link.name}
+                >
+                    <i className={`${link.icon} text-lg`}></i>
+                </a>
+            ))}
+        </div>
+
         <LanguageSwitcher />
-        <main className="relative z-10 flex flex-col items-center px-4 py-16 md:py-24 space-y-24 md:space-y-32">
+        <main className="relative z-10 flex flex-col items-center px-4 md:px-6 py-20 md:py-32 space-y-24 md:space-y-40 max-w-7xl mx-auto">
           {currentPage === 'home' ? <HomePage /> : <BiographyPage />}
         </main>
       </div>

@@ -1,3 +1,4 @@
+
 import React, { useRef, useEffect } from 'react';
 
 const Background: React.FC = () => {
@@ -11,10 +12,9 @@ const Background: React.FC = () => {
     if (!ctx) return;
 
     let animationFrameId: number;
-    let particles: { x: number; y: number; vx: number; vy: number; radius: number }[] = [];
+    let particles: { x: number; y: number; vx: number; vy: number; radius: number; color: string }[] = [];
 
     const resizeCanvas = () => {
-      // Use the parent's dimensions for sizing to work with absolute positioning
       if (canvas.parentElement) {
         canvas.width = canvas.parentElement.offsetWidth;
         canvas.height = canvas.parentElement.offsetHeight;
@@ -24,36 +24,29 @@ const Background: React.FC = () => {
     const init = () => {
       resizeCanvas();
       particles = [];
-      // Generative & Responsive: The number of particles is calculated based on screen size
-      const particleCount = Math.floor((canvas.width * canvas.height) / 18000);
+      const particleCount = Math.floor((canvas.width * canvas.height) / 20000); // Slightly fewer particles for cleaner look
+      
+      const colors = ['rgba(245, 158, 11, 0.5)', 'rgba(0, 152, 234, 0.5)']; // Amber and TON Blue
+
       for (let i = 0; i < particleCount; i++) {
         particles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 0.3,
-          vy: (Math.random() - 0.5) * 0.3,
-          radius: Math.random() * 1.5 + 1,
+          vx: (Math.random() - 0.5) * 0.2, // Slower movement
+          vy: (Math.random() - 0.5) * 0.2,
+          radius: Math.random() * 1.5 + 0.5,
+          color: colors[Math.floor(Math.random() * colors.length)]
         });
       }
     };
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      const particleColor = 'rgba(0, 152, 234, 0.7)';
-      const glowColor = 'rgba(0, 152, 234, 0.5)';
       
-      // Particle drawing with glow
-      ctx.fillStyle = particleColor;
-      ctx.shadowColor = glowColor;
-      ctx.shadowBlur = 8;
-
       particles.forEach(p => {
-        // Subtle Drift
         p.x += p.vx;
         p.y += p.vy;
 
-        // Wrap particles around screen edges
         if (p.x < 0) p.x = canvas.width;
         if (p.x > canvas.width) p.x = 0;
         if (p.y < 0) p.y = canvas.height;
@@ -61,13 +54,15 @@ const Background: React.FC = () => {
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.shadowBlur = 4;
+        ctx.shadowColor = p.color;
         ctx.fill();
       });
       
-      // Interconnected Network (Nexus) drawing
-      const maxDistance = 120;
-      ctx.lineWidth = 0.8; // Increased line width
-      ctx.shadowBlur = 6; // Enhanced glow for lines
+      // Connections
+      const maxDistance = 150;
+      ctx.lineWidth = 0.5;
 
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
@@ -76,12 +71,14 @@ const Background: React.FC = () => {
           const distance = Math.sqrt(dx * dx + dy * dy);
 
           if (distance < maxDistance) {
-            // Lines are more visible when particles are closer
             const opacity = 1 - (distance / maxDistance);
-            ctx.strokeStyle = `rgba(0, 152, 234, ${opacity * 0.9})`; // Increased opacity
-            ctx.shadowColor = `rgba(0, 152, 234, ${opacity * 0.7})`; // Increased glow opacity
-
             ctx.beginPath();
+            // Gradient line
+            const gradient = ctx.createLinearGradient(particles[i].x, particles[i].y, particles[j].x, particles[j].y);
+            gradient.addColorStop(0, particles[i].color.replace('0.5)', `${opacity * 0.3})`));
+            gradient.addColorStop(1, particles[j].color.replace('0.5)', `${opacity * 0.3})`));
+            
+            ctx.strokeStyle = gradient;
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
             ctx.stroke();
@@ -89,10 +86,6 @@ const Background: React.FC = () => {
         }
       }
       
-      // Reset shadow for next frame to avoid artifacts
-      ctx.shadowBlur = 0;
-      ctx.shadowColor = 'transparent';
-
       animationFrameId = requestAnimationFrame(animate);
     };
 
@@ -107,7 +100,7 @@ const Background: React.FC = () => {
   }, []);
 
   return (
-    <div className="absolute inset-0 w-full h-full pointer-events-none">
+    <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
       <canvas ref={canvasRef} className="w-full h-full" />
     </div>
   );

@@ -1,14 +1,15 @@
 
 import React from 'react';
 import AnimatedCard from '../AnimatedCard';
-import { SectionHeader, SubSubHeader, SubSubSubHeader, BioParagraph, BioTable, BioTableHead, BioTableHeader, BioTableBody, BioTableRow, BioTableCell } from './shared';
+import { SectionHeader, SubHeader, SubSubHeader, SubSubSubHeader, BioParagraph, BioTable, BioTableHead, BioTableHeader, BioTableBody, BioTableRow, BioTableCell } from './shared';
 import StyledText from '../TextWithTonIcon';
 import { useLanguage } from '../../contexts/LanguageContext';
 
 export const VenturesCard: React.FC = () => {
   const { t } = useLanguage();
   return (
-    <AnimatedCard>
+    <>
+      <AnimatedCard>
         <SectionHeader>{t('bio_ventures_title')}</SectionHeader>
         
         <SubSubHeader>{t('bio_ventures_subtitle1')}</SubSubHeader>
@@ -29,7 +30,9 @@ export const VenturesCard: React.FC = () => {
         <BioParagraph>
             <StyledText text={t('bio_ventures_p9')} />
         </BioParagraph>
+      </AnimatedCard>
 
+      <AnimatedCard>
         <SubSubSubHeader>{t('bio_ventures_subtitle4')}</SubSubSubHeader>
         <BioParagraph>{t('bio_ventures_p10')}</BioParagraph>
         <BioTable>
@@ -63,9 +66,12 @@ export const VenturesCard: React.FC = () => {
                 <BioTableRow><BioTableCell><strong>{t('project_etn_bio_name')}</strong></BioTableCell><BioTableCell>{t('bio_ventures_t1r23_c2')}</BioTableCell></BioTableRow>
                 <BioTableRow><BioTableCell><strong>{t('project_netsaai_name')}</strong></BioTableCell><BioTableCell>{t('bio_ventures_t1r24_c2')}</BioTableCell></BioTableRow>
                 <BioTableRow><BioTableCell><strong>{t('project_etn_authenticator_name')}</strong></BioTableCell><BioTableCell>{t('bio_ventures_t1r25_c2')}</BioTableCell></BioTableRow>
+                <BioTableRow><BioTableCell><strong>{t('project_etn_gebeya_name')}</strong></BioTableCell><BioTableCell>{t('project_etn_gebeya_desc')}</BioTableCell></BioTableRow>
             </BioTableBody>
         </BioTable>
+      </AnimatedCard>
 
+      <AnimatedCard>
         <SubSubSubHeader>{t('bio_ventures_subtitle5')}</SubSubSubHeader>
         <BioParagraph>{t('bio_ventures_p11')}</BioParagraph>
         <BioTable>
@@ -79,11 +85,12 @@ export const VenturesCard: React.FC = () => {
                 <BioTableRow><BioTableCell><strong>{t('bio_ventures_t2r2_c1')}</strong></BioTableCell><BioTableCell>{t('bio_ventures_t2r2_c2')}</BioTableCell><BioTableCell>{t('bio_ventures_t2r2_c3')}</BioTableCell></BioTableRow>
                 <BioTableRow><BioTableCell><strong>{t('bio_ventures_t2r3_c1')}</strong></BioTableCell><BioTableCell>{t('bio_ventures_t2r3_c2')}</BioTableCell><BioTableCell><StyledText text={t('bio_ventures_t2r3_c3')} /></BioTableCell></BioTableRow>
                 <BioTableRow><BioTableCell><strong>{t('bio_ventures_t2r4_c1')}</strong></BioTableCell><BioTableCell><StyledText text={t('bio_ventures_t2r4_c2')} /></BioTableCell><BioTableCell>{t('bio_ventures_t2r4_c3')}</BioTableCell></BioTableRow>
-                {/* FIX: Completed the missing table row which was causing a parsing error. */}
                 <BioTableRow><BioTableCell><strong>{t('bio_ventures_t2r5_c1')}</strong></BioTableCell><BioTableCell><StyledText text={t('bio_ventures_t2r5_c2')}/></BioTableCell><BioTableCell>{t('bio_ventures_t2r5_c3')}</BioTableCell></BioTableRow>
             </BioTableBody>
         </BioTable>
+      </AnimatedCard>
 
+      <AnimatedCard>
         <SubSubSubHeader>{t('bio_ventures_subtitle6')}</SubSubSubHeader>
         <BioParagraph>
             <StyledText text={t('bio_ventures_p12')} />
@@ -91,6 +98,7 @@ export const VenturesCard: React.FC = () => {
         <BioParagraph>
             <StyledText text={t('bio_ventures_p13')} />
         </BioParagraph>
-    </AnimatedCard>
+      </AnimatedCard>
+    </>
   );
 };
