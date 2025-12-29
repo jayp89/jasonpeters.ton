@@ -1,6 +1,7 @@
-
+User-agent: Searchbot
+User-agent: Crawlbot
 User-agent: *
 Allow: /
+Allow: /llms.txt
 
 Sitemap: http://jasonpeters-ton.etnecosystem.org/sitemap.xml
-Allow: /llms.txt

@@ -19,10 +19,25 @@ const BOOT_SEQUENCE_KEYS = [
 const SplashScreen: React.FC<SplashScreenProps> = ({ show }) => {
     const { t } = useLanguage();
     const [bootIndex, setBootIndex] = useState(0);
+    const [isVisible, setIsVisible] = useState(true);
+
+    // Handle internal visibility state for exit animation
+    useEffect(() => {
+        if (!show) {
+            // Wait for fade out animation (700ms) before removing from DOM context if needed, 
+            // but usually we just let CSS handle opacity.
+            const timer = setTimeout(() => {
+                setIsVisible(false);
+            }, 800);
+            return () => clearTimeout(timer);
+        } else {
+            setIsVisible(true);
+            setBootIndex(0);
+        }
+    }, [show]);
 
     useEffect(() => {
         if (show) {
-            setBootIndex(0); // Reset on show
             const interval = setInterval(() => {
                 setBootIndex(prevIndex => {
                     if (prevIndex >= BOOT_SEQUENCE_KEYS.length) {
@@ -38,7 +53,6 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ show }) => {
                 setBootIndex(1);
             }, 1000);
 
-
             return () => {
                 clearInterval(interval);
                 clearTimeout(initialTimeout);
@@ -46,13 +60,18 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ show }) => {
         }
     }, [show]);
 
+    // If completely done hiding, we can return null to remove from DOM, 
+    // OR keep it hidden to avoid layout thrashing. 
+    // Since we want SEO bots to see content BEHIND this, returning null eventually is good.
+    if (!isVisible) return null;
+
     const renderedLines = BOOT_SEQUENCE_KEYS.slice(0, bootIndex).map(key => t(key));
 
     return (
         <div
             className={`
-                fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#0a0a0f]
-                transition-opacity duration-500 ease-in-out
+                fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#0a0a0f]
+                transition-opacity duration-700 ease-in-out
                 ${show ? 'opacity-100' : 'opacity-0 pointer-events-none'}
             `}
             aria-hidden={!show}

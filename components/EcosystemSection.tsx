@@ -57,11 +57,13 @@ const EcosystemSection: React.FC = () => {
                 <PillarCard index={3} title={t('ecosystem_pillar3_title')} description={t('ecosystem_pillar3_desc')} />
             </div>
 
-            <div className="relative">
-                <div className="absolute -left-10 top-1/2 -translate-y-1/2 -rotate-90 text-xs font-mono text-gray-500 tracking-[0.3em] uppercase hidden xl:block">
-                    Ecosystem Map
+            <div className="flex gap-6">
+                <div className="hidden xl:flex items-center justify-center w-8 shrink-0 border-r border-white/5">
+                    <div className="-rotate-90 whitespace-nowrap text-xs font-mono text-amber-500/40 tracking-[0.4em] uppercase">
+                        Ecosystem Map
+                    </div>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="flex-grow grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {ETN_ECOSYSTEM_PROJECTS.map((project) => (
                         <ProjectCard key={project.nameKey} nameKey={project.nameKey} descriptionKey={project.descriptionKey} />
                     ))}

@@ -7,9 +7,21 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>http://jasonpeters-ton.etnecosystem.org/#biography</loc>
+    <loc>http://jasonpeters-ton.etnecosystem.org/#/</loc>
+    <lastmod>2025-05-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>http://jasonpeters-ton.etnecosystem.org/#/biography</loc>
     <lastmod>2025-05-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://jasonpeters-ton.etnecosystem.org/llms.txt</loc>
+    <lastmod>2025-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
 </urlset>
