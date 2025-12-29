@@ -57,9 +57,9 @@ const EcosystemSection: React.FC = () => {
                 <PillarCard index={3} title={t('ecosystem_pillar3_title')} description={t('ecosystem_pillar3_desc')} />
             </div>
 
-            <div className="flex gap-6">
-                <div className="hidden xl:flex items-center justify-center w-8 shrink-0 border-r border-white/5">
-                    <div className="-rotate-90 whitespace-nowrap text-xs font-mono text-amber-500/40 tracking-[0.4em] uppercase">
+            <div className="flex gap-6 relative">
+                <div className="hidden md:flex items-center justify-center w-12 shrink-0 border-r border-white/5">
+                    <div style={{ writingMode: 'vertical-rl' }} className="whitespace-nowrap text-xs font-mono text-amber-500/40 tracking-[0.4em] uppercase rotate-180">
                         Ecosystem Map
                     </div>
                 </div>

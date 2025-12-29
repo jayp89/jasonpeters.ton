@@ -23,11 +23,19 @@ const IntroSection: React.FC = () => {
       </div>
 
       <h1 
-        className="font-orbitron text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-600 mb-6 tracking-wider"
+        className="font-orbitron text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-600 mb-2 tracking-wider"
         style={{ textShadow: '0 0 40px rgba(245, 158, 11, 0.3)' }}
       >
         {t('intro_title')}
       </h1>
+
+      <a 
+        href="mailto:jason@etnecosystem.org" 
+        className="font-rajdhani text-lg md:text-xl text-gray-400 hover:text-amber-400 transition-colors mb-6 flex items-center gap-2 group tracking-wide"
+      >
+        <i className="fas fa-envelope text-sm opacity-70 group-hover:opacity-100 transition-opacity"></i>
+        <span>jason@etnecosystem.org</span>
+      </a>
       
       <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-8">
         <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse mr-3"></span>

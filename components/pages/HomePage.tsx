@@ -10,6 +10,7 @@ import CoffeeSection from '../CoffeeSection';
 import Footer from '../Footer';
 import MissionSection from '../MissionSection';
 import BiographyLink from '../BiographyLink';
+import JsonLd from '../JsonLd';
 
 const HomePage: React.FC = () => {
   return (
@@ -23,6 +24,8 @@ const HomePage: React.FC = () => {
         <meta property="og:url" content="http://jasonpeters-ton.etnecosystem.org/" />
       </Helmet>
       
+      <JsonLd />
+
       <IntroSection />
       <MissionSection />
       <AboutSection />

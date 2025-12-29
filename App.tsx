@@ -22,37 +22,60 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     <div className="relative min-h-screen">
       <Background />
       
-      {/* Social Header */}
-      <div className="fixed top-4 left-4 z-50 flex items-center gap-3 bg-black/30 backdrop-blur-md border border-white/10 rounded-full px-4 py-2 shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:border-amber-500/30 transition-all duration-300 scale-[0.8] origin-top-left md:scale-100">
-          {SOCIAL_LINKS.map((link) => (
-              <a
-                  key={link.key}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`text-gray-400 transition-all duration-300 transform hover:scale-125 ${link.color}`}
-                  title={link.name}
-              >
-                  <i className={`${link.icon} text-lg`}></i>
-              </a>
-          ))}
+      {/* Navigation Header - Responsive Layout */}
+      <div className="fixed top-0 left-0 right-0 z-50 p-3 md:p-4 flex flex-col md:flex-row items-center md:justify-between gap-3 pointer-events-none">
+        
+        {/* Row 1 on Mobile: Socials & Language */}
+        <div className="w-full md:w-auto flex justify-between items-center md:contents">
+            {/* Social Header */}
+            <div className="pointer-events-auto flex items-center gap-3 bg-black/30 backdrop-blur-md border border-white/10 rounded-full px-4 py-2 shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:border-amber-500/30 transition-all duration-300 overflow-x-auto max-w-[65%] md:max-w-none no-scrollbar">
+                {SOCIAL_LINKS.map((link) => (
+                    <a
+                        key={link.key}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`text-gray-400 transition-all duration-300 transform hover:scale-125 hover:text-amber-400 flex-shrink-0 ${link.color}`}
+                        title={link.name}
+                    >
+                        <i className={`${link.icon} text-lg`}></i>
+                    </a>
+                ))}
+            </div>
+
+            {/* Language Switcher */}
+            <div className="md:order-3 pointer-events-auto">
+                 <LanguageSwitcher />
+            </div>
+        </div>
+
+        {/* Action Buttons - Stacked on mobile row 2, Absolute Centered on Desktop */}
+        <div className="pointer-events-auto md:absolute md:left-1/2 md:top-4 md:-translate-x-1/2 order-2 md:order-none w-full md:w-auto flex justify-center gap-3 md:gap-4">
+            {/* Ecosystem Docs Button */}
+            <a 
+              href="https://docs.etnecosystem.org/docs/intro"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 bg-black/40 backdrop-blur-md border border-white/20 rounded-full px-4 py-2 shadow-[0_0_15px_rgba(255,255,255,0.05)] hover:bg-white/5 hover:border-amber-500/30 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all duration-300 group scale-[0.9] md:scale-100 whitespace-nowrap"
+            >
+              <i className="fas fa-book text-gray-400 text-xs group-hover:text-amber-400 transition-colors"></i>
+              <span className="text-gray-300 font-orbitron font-bold tracking-wider text-xs md:text-sm group-hover:text-amber-400 transition-colors">ECOSYSTEM DOCS</span>
+            </a>
+
+            {/* Buy $ETN Button */}
+            <a 
+              href="https://app.ston.fi/swap?chartVisible=false&chartInterval=1w&ft=TON&tt=EQAz_XrD0hA4cqlprWkpS7TIAhCG4CknAfob1VQm-2mBf5Vl&fa=%222%22"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 bg-black/40 backdrop-blur-md border border-amber-500/50 rounded-full px-5 py-2 shadow-[0_0_15px_rgba(245,158,11,0.3)] hover:bg-amber-900/40 hover:border-amber-400 hover:shadow-[0_0_25px_rgba(245,158,11,0.5)] transition-all duration-300 group scale-[0.9] md:scale-100 whitespace-nowrap"
+            >
+              <span className="text-amber-400 font-orbitron font-bold tracking-wider text-xs md:text-sm group-hover:text-white transition-colors">BUY $ETN</span>
+              <i className="fas fa-external-link-alt text-amber-500 text-xs group-hover:text-white transition-colors"></i>
+            </a>
+        </div>
       </div>
 
-      {/* Buy $ETN Button - Centered */}
-      <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50">
-        <a 
-          href="https://app.ston.fi/swap?chartVisible=false&chartInterval=1w&ft=TON&tt=EQAz_XrD0hA4cqlprWkpS7TIAhCG4CknAfob1VQm-2mBf5Vl&fa=%222%22"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 bg-black/40 backdrop-blur-md border border-amber-500/50 rounded-full px-6 py-2 shadow-[0_0_15px_rgba(245,158,11,0.3)] hover:bg-amber-900/40 hover:border-amber-400 hover:shadow-[0_0_25px_rgba(245,158,11,0.5)] transition-all duration-300 group scale-[0.9] md:scale-100 origin-top"
-        >
-          <span className="text-amber-400 font-orbitron font-bold tracking-wider text-sm md:text-base group-hover:text-white transition-colors">BUY $ETN</span>
-          <i className="fas fa-external-link-alt text-amber-500 text-xs group-hover:text-white transition-colors"></i>
-        </a>
-      </div>
-
-      <LanguageSwitcher />
-      <main className="relative z-10 flex flex-col items-center px-4 md:px-6 py-20 md:py-32 space-y-24 md:space-y-40 max-w-7xl mx-auto">
+      <main className="relative z-10 flex flex-col items-center px-4 md:px-6 pt-36 pb-20 md:py-32 space-y-24 md:space-y-40 max-w-7xl mx-auto">
         {children}
       </main>
     </div>

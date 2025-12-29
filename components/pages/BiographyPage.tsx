@@ -13,6 +13,7 @@ import PublicProfileCard from '../biography/PublicProfileCard';
 import DisambiguationCard from '../biography/DisambiguationCard';
 import ConclusionCard from '../biography/ConclusionCard';
 import { useLanguage } from '../../contexts/LanguageContext';
+import JsonLd from '../JsonLd';
 
 const BiographyPage: React.FC = () => {
   const { t } = useLanguage();
@@ -27,6 +28,8 @@ const BiographyPage: React.FC = () => {
             <meta property="og:description" content="Read the comprehensive biography of Jason Peters (JayP). From his early life in Addis Ababa to founding the ETN Ecosystem." />
             <meta property="og:url" content="http://jasonpeters-ton.etnecosystem.org/biography" />
         </Helmet>
+
+        <JsonLd />
 
         <div className="w-full max-w-5xl px-4 md:px-0 pt-4">
             <Link 
